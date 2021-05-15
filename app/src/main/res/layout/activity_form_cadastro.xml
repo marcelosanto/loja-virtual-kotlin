@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="match_parent"
-    android:fillViewport="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+android:fillViewport="true"
+xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/shape_degrade"
-    tools:context=".Form.FormLogin">
+    tools:context=".Form.FormCadastro">
 
     <EditText
         android:id="@+id/editEmail"
@@ -25,7 +23,7 @@
         android:textColorHint="@color/black"
         android:inputType="textEmailAddress"
         android:drawableRight="@drawable/ic_email"
-    />
+        />
 
     <EditText
         android:id="@+id/editSenha"
@@ -55,18 +53,6 @@
         android:backgroundTint="@color/blue_green"
         android:background="@drawable/shape_button"
 
-    />
-
-    <TextView
-        android:id="@+id/text_tela_de_cadastro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Crie uma conta clicando aqui!"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
         />
 
 </LinearLayout></androidx.core.widget.NestedScrollView>
