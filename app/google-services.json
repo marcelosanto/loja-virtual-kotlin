@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "944217526548",
+    "project_id": "loja-virtual-d10ba",
+    "storage_bucket": "loja-virtual-d10ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944217526548:android:7ee7b54fdd9924ffb93201",
+        "android_client_info": {
+          "package_name": "com.marcelo.lojavirtual"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944217526548-tqpnf43st349rtk6psp4reutiju1t9sq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.marcelo.lojavirtual",
+            "certificate_hash": "dd41cd697ea326c191fa3da3b6af96855370cae0"
+          }
+        },
+        {
+          "client_id": "944217526548-prvo49tjv4h588ngiq13ikp6i79rf9fp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbC7xxelp5jGkoTa6fQHwn60h1EiecB3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944217526548-prvo49tjv4h588ngiq13ikp6i79rf9fp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
