@@ -1,5 +1,6 @@
 package com.marcelo.lojavirtual.Form
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,7 +42,9 @@ class FormCadastro : AppCompatActivity() {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,senha).addOnCompleteListener{
                 if (it.isSuccessful){
                     var snackbar = Snackbar.make(binding.layoutCadastro, "Cadastro realizado com sucesso!", Snackbar.LENGTH_INDEFINITE)
-                        .setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).setAction("OK", View.OnClickListener {})
+                        .setBackgroundTint(Color.WHITE).setTextColor(Color.BLACK).setAction("OK", View.OnClickListener {
+                            VoltarParaFormLogin()
+                        })
                     snackbar.show()
                 }
             }.addOnFailureListener{
@@ -50,5 +53,11 @@ class FormCadastro : AppCompatActivity() {
                 snackbar.show()
             }
         }
+    }
+
+    private  fun  VoltarParaFormLogin() {
+        var intent = Intent(this, FormLogin::class.java)
+        startActivity(intent)
+        finish()
     }
 }

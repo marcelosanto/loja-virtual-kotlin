@@ -9,6 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/layout_login"
     android:background="@drawable/shape_degrade"
     tools:context=".Form.FormLogin">
 
