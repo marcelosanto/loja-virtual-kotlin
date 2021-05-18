@@ -10,5 +10,9 @@ class FormCadastro : AppCompatActivity() {
         setContentView(R.layout.activity_form_cadastro)
 
         supportActionBar!!.hide()
+
+
+
+
     }
 }
