@@ -1,7 +1,9 @@
 package com.marcelo.lojavirtual
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -11,7 +13,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.marcelo.lojavirtual.Form.FormLogin
 import com.marcelo.lojavirtual.databinding.ActivityTelaPrincipalBinding
+import java.time.Instant
 
 class TelaPrincipal : AppCompatActivity() {
 
@@ -26,10 +31,7 @@ class TelaPrincipal : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarTelaPrincipal.toolbar)
 
-        binding.appBarTelaPrincipal.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_tela_principal)
@@ -50,8 +52,24 @@ class TelaPrincipal : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if(id == R.id.action_settings) {
+            FirebaseAuth.getInstance().signOut()
+            VoltarParaFormLogin()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_tela_principal)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun VoltarParaFormLogin(){
+        val intent = Intent(this, FormLogin::class.java)
+        startActivity(intent)
+        finish()
     }
 }
