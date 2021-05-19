@@ -2,8 +2,10 @@ package com.marcelo.lojavirtual
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -13,12 +15,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.marcelo.lojavirtual.Form.FormLogin
+import com.marcelo.lojavirtual.Fragments.Produtos
 import com.marcelo.lojavirtual.databinding.ActivityTelaPrincipalBinding
 import java.time.Instant
 
-class TelaPrincipal : AppCompatActivity() {
+class TelaPrincipal : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityTelaPrincipalBinding
@@ -29,21 +33,42 @@ class TelaPrincipal : AppCompatActivity() {
         binding = ActivityTelaPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarTelaPrincipal.toolbar)
+        val toolbar = binding.appBarTelaPrincipal.toolbar
+        setSupportActionBar(toolbar)
 
+        val produtosFragment = Produtos()
+        val fragment = supportFragmentManager.beginTransaction()
+        fragment.replace(R.id.frameContainer, produtosFragment)
+        fragment.commit()
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_tela_principal)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-            ), drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
+
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == R.id.nav_produtos) {
+            val produtosFragment = Produtos()
+            val fragment = supportFragmentManager.beginTransaction()
+            fragment.replace(R.id.frameContainer, produtosFragment)
+            fragment.commit()
+
+        } else if(id == R.id.nav_cadastrar_produtos) {
+
+        } else if(id == R.id.nav_contato) {
+
+        }
+
+        val drawer = binding.drawerLayout
+        drawer.closeDrawer(GravityCompat.START)
+        return true
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,18 +81,13 @@ class TelaPrincipal : AppCompatActivity() {
         val id = item.itemId
         if(id == R.id.action_settings) {
             FirebaseAuth.getInstance().signOut()
-            VoltarParaFormLogin()
+            voltarParaFormLogin()
         }
 
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_tela_principal)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    private fun VoltarParaFormLogin(){
+    private fun voltarParaFormLogin(){
         val intent = Intent(this, FormLogin::class.java)
         startActivity(intent)
         finish()
