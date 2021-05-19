@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.marcelo.lojavirtual.Form.FormLogin
+import com.marcelo.lojavirtual.Fragments.CadastroProdutos
 import com.marcelo.lojavirtual.Fragments.Produtos
 import com.marcelo.lojavirtual.databinding.ActivityTelaPrincipalBinding
 import java.time.Instant
@@ -61,6 +62,9 @@ class TelaPrincipal : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             fragment.commit()
 
         } else if(id == R.id.nav_cadastrar_produtos) {
+
+            var intent = Intent(this,  CadastroProdutos::class.java)
+            startActivity(intent)
 
         } else if(id == R.id.nav_contato) {
 
