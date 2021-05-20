@@ -5,9 +5,11 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import com.google.firebase.storage.FirebaseStorage
 import com.marcelo.lojavirtual.R
 import com.marcelo.lojavirtual.databinding.ActivityCadastroProdutosBinding
 import com.marcelo.lojavirtual.databinding.ActivityFormLoginBinding
+import java.util.*
 
 @Suppress("DEPRECATION")
 class CadastroProdutos : AppCompatActivity() {
@@ -22,6 +24,10 @@ class CadastroProdutos : AppCompatActivity() {
 
         binding.btSelecionarFoto.setOnClickListener {
             selecionarFotoDaGaleria()
+        }
+
+        binding.btCadastrarProduto.setOnClickListener {
+            salvarDadosNoFirebase()
         }
     }
 
@@ -41,5 +47,19 @@ class CadastroProdutos : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent,0)
+    }
+
+    private fun salvarDadosNoFirebase() {
+        val nomeArquivo = UUID.randomUUID().toString()
+        val referencia = FirebaseStorage.getInstance().getReference(
+            "/imagens/${nomeArquivo}")
+
+        SelecionarUri?.let {
+            referencia.putFile(it).addOnSuccessListener {
+                referencia.downloadUrl.addOnSuccessListener {
+
+                }
+            }
+        }
     }
 }
