@@ -5,7 +5,13 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.FirebaseFirestoreKtxRegistrar
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.storage.FirebaseStorage
+import com.marcelo.lojavirtual.Model.Dados
 import com.marcelo.lojavirtual.R
 import com.marcelo.lojavirtual.databinding.ActivityCadastroProdutosBinding
 import com.marcelo.lojavirtual.databinding.ActivityFormLoginBinding
@@ -58,6 +64,19 @@ class CadastroProdutos : AppCompatActivity() {
             referencia.putFile(it).addOnSuccessListener {
                 referencia.downloadUrl.addOnSuccessListener {
 
+                    val url = it.toString()
+                    val nome = binding.editNome.text.toString()
+                    val preco = binding.editPreco.text.toString()
+                    val uid = FirebaseAuth.getInstance().uid
+
+                    val Produtos = Dados(url, nome, preco)
+                    FirebaseFirestore.getInstance().collection("Produtos")
+                        .add(Produtos)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Produto cadastrado  com sucesso!", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Falha ao cadastrar  o produto!", Toast.LENGTH_SHORT).show()
+                        }
                 }
             }
         }
