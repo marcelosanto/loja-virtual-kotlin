@@ -8,13 +8,9 @@ import android.provider.MediaStore
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.FirebaseFirestoreKtxRegistrar
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.storage.FirebaseStorage
 import com.marcelo.lojavirtual.Model.Dados
-import com.marcelo.lojavirtual.R
 import com.marcelo.lojavirtual.databinding.ActivityCadastroProdutosBinding
-import com.marcelo.lojavirtual.databinding.ActivityFormLoginBinding
 import java.util.*
 
 @Suppress("DEPRECATION")

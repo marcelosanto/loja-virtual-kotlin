@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/imagemProduto"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/adidas"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:scaleType="centerCrop"
+        />
+
+    <TextView
+        android:id="@+id/nomeProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tênis Adidas"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:maxLength="50"
+        android:layout_toEndOf="@id/imagemProduto"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        />
+
+    <TextView
+        android:id="@+id/precoProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nomeProduto"
+        android:layout_toEndOf="@id/imagemProduto"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:text="R$ 249,99"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-black"
+        />
+
+</RelativeLayout>
