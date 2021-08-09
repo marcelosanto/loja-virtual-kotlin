@@ -56,7 +56,7 @@ class TelaPrincipal : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
         } else if(id == R.id.nav_cadastrar_produtos) {
 
-            var intent = Intent(this,  CadastroProdutos::class.java)
+            val intent = Intent(this, CadastroProdutos::class.java)
             startActivity(intent)
 
         } else if(id == R.id.nav_contato) {
