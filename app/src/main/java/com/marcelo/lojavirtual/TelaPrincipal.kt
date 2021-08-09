@@ -2,26 +2,19 @@ package com.marcelo.lojavirtual
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.ui.AppBarConfiguration
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.marcelo.lojavirtual.Form.FormLogin
 import com.marcelo.lojavirtual.Fragments.CadastroProdutos
 import com.marcelo.lojavirtual.Fragments.Produtos
 import com.marcelo.lojavirtual.databinding.ActivityTelaPrincipalBinding
-import java.time.Instant
 
 class TelaPrincipal : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -67,7 +60,7 @@ class TelaPrincipal : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             startActivity(intent)
 
         } else if(id == R.id.nav_contato) {
-
+            enviarEmail()
         }
 
         val drawer = binding.drawerLayout
@@ -91,9 +84,22 @@ class TelaPrincipal : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         return super.onOptionsItemSelected(item)
     }
 
-    private fun voltarParaFormLogin(){
+    private fun voltarParaFormLogin() {
         val intent = Intent(this, FormLogin::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun enviarEmail() {
+
+        val PACKAGEM_GOOGLEMAIL = "com.google.android.gm"
+        val email = Intent(Intent.ACTION_SEND)
+        email.putExtra(Intent.EXTRA_EMAIL, arrayOf(""))
+        email.putExtra(Intent.EXTRA_SUBJECT, "")
+        email.putExtra(Intent.EXTRA_TEXT, "")
+
+        email.type = "message/rec822"
+        email.setPackage(PACKAGEM_GOOGLEMAIL)
+        startActivity(Intent.createChooser(email, "Escolha o app de e-mail"))
     }
 }
